@@ -26,7 +26,7 @@ public class Ventana extends JPanel implements ActionListener {
     final int altoTablero = 25;
 
     Timer timer;// Timer es una clase de java que nos permite asignar acciones periodicamente
-    boolean isFallingFinished = false;
+    boolean finalizoQuitarFilas = false;
     boolean empezada = false;
     boolean pausa = false;
     int numLineasBorradas = 0;
@@ -51,8 +51,8 @@ public class Ventana extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (isFallingFinished) {
-            isFallingFinished = false;
+        if (finalizoQuitarFilas) {
+            finalizoQuitarFilas = false;
             nuevaPieza();
         } else {
             BajarPiezaRapido();
@@ -77,7 +77,7 @@ public class Ventana extends JPanel implements ActionListener {
         }
 
         empezada = true;
-        isFallingFinished = false;
+        finalizoQuitarFilas = false;
         numLineasBorradas = 0;
         clear();
 
@@ -162,7 +162,7 @@ public class Ventana extends JPanel implements ActionListener {
 
         BorrarLineas();
 
-        if (!isFallingFinished) {
+        if (!finalizoQuitarFilas) {
             nuevaPieza();
         }
     }
@@ -219,7 +219,7 @@ public class Ventana extends JPanel implements ActionListener {
     }
 
     private void BorrarLineas() {//falta comentar
-        int numFullLines = 0;
+        int numeroLineasEnterasPorTurnos = 0;
 
         for (int i = altoTablero -1; i >= 0; --i) {
             boolean lineIsFull = true;
@@ -232,7 +232,7 @@ public class Ventana extends JPanel implements ActionListener {
             }
 
             if (lineIsFull) {
-                ++numFullLines;
+                ++numeroLineasEnterasPorTurnos;
                 for (int k = i; k < altoTablero - 1; ++k) {
                     for (int j = 0; j < anchoTablero; ++j) {
                         piezas[(k * anchoTablero) + j] = shapeAt(j, k + 1);
@@ -241,10 +241,10 @@ public class Ventana extends JPanel implements ActionListener {
             }
         }
 
-        if (numFullLines > 0) {
-            numLineasBorradas += numFullLines;
+        if (numeroLineasEnterasPorTurnos > 0) {
+            numLineasBorradas += numeroLineasEnterasPorTurnos;
             marcador.setText(String.valueOf(numLineasBorradas));
-            isFallingFinished = true;
+            finalizoQuitarFilas = true;
             piezaActual.establecerPieza(PiezasTetris.NoPieza);
             repaint();
         }
