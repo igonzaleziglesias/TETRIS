@@ -36,7 +36,7 @@ public class Ventana extends JPanel implements ActionListener {
     Piezas piezaActual;
     PiezasTetris[] piezas;
 
-    public Ventana(Tetris juego) {
+    public Ventana(Tetris juego) {//define la ventana de juego
 
         setFocusable(true);
         piezaActual = new Piezas();
@@ -59,15 +59,15 @@ public class Ventana extends JPanel implements ActionListener {
         }
     }
 
-    int squareWidth() {
+    int anchoPieza() {//dar ancho
         return (int) getSize().getWidth() / anchoTablero;
     }
 
-    int squareHeight() {
+    int alturaPieza() {//dar altura
         return (int) getSize().getHeight() / altoTablero;
     }
 
-    PiezasTetris shapeAt(int x, int y) {
+    PiezasTetris dimensionar(int x, int y) {
         return piezas[(y * anchoTablero) + x];
     }
 
@@ -107,14 +107,14 @@ public class Ventana extends JPanel implements ActionListener {
         Color col = new Color(255, 255, 255);//color gris
         g.drawLine(0, 20, 300, 20);//pinta una linea en la parte superior de la ventana
         Dimension size = getSize();//encapsula el tamñao de un objeto
-        int parteSuperiorTablero = (int) size.getHeight() - altoTablero * squareHeight();
+        int parteSuperiorTablero = (int) size.getHeight() - altoTablero * alturaPieza();
 
         for (int i = 0; i < altoTablero; ++i) {
             for (int j = 0; j < anchoTablero; ++j) {
-                PiezasTetris pieza = shapeAt(j, altoTablero - i - 1);
+                PiezasTetris pieza = dimensionar(j, altoTablero - i - 1);
                 if (pieza != PiezasTetris.NoPieza) {
-                    pintarPiezas(g, 0 + j * squareWidth(),
-                            parteSuperiorTablero + i * squareHeight(), pieza);
+                    pintarPiezas(g, 0 + j * anchoPieza(),
+                            parteSuperiorTablero + i * alturaPieza(), pieza);
                 }
             }
         }
@@ -123,8 +123,8 @@ public class Ventana extends JPanel implements ActionListener {
             for (int i = 0; i < 4; ++i) {
                 int x = posicionX + piezaActual.x(i);
                 int y = posicionY - piezaActual.y(i);
-                pintarPiezas(g, 0 + x * squareWidth(),
-                        parteSuperiorTablero + (altoTablero - y - 1) * squareHeight(),
+                pintarPiezas(g, 0 + x * anchoPieza(),
+                        parteSuperiorTablero + (altoTablero - y - 1) * alturaPieza(),
                         piezaActual.getPieza());
             }
         }
@@ -206,7 +206,7 @@ public class Ventana extends JPanel implements ActionListener {
             if (x < 0 || x >= anchoTablero || y < 0 || y >= altoTablero) {
                 return false;
             }
-            if (shapeAt(x, y) != PiezasTetris.NoPieza) {
+            if (dimensionar(x, y) != PiezasTetris.NoPieza) {
                 return false;
             }
         }
@@ -225,23 +225,23 @@ public class Ventana extends JPanel implements ActionListener {
             boolean lineIsFull = true;
 
             for (int j = 0; j < anchoTablero; ++j) {
-                if (shapeAt(j, i) == PiezasTetris.NoPieza) {
-                    lineIsFull = false;
+                if (dimensionar(j, i) == PiezasTetris.NoPieza) {
+                    lineIsFull = false;//linea no completa
                     break;
                 }
             }
 
-            if (lineIsFull) {
+            if (lineIsFull) {//linea completa
                 ++numeroLineasEnterasPorTurnos;
                 for (int k = i; k < altoTablero - 1; ++k) {
                     for (int j = 0; j < anchoTablero; ++j) {
-                        piezas[(k * anchoTablero) + j] = shapeAt(j, k + 1);
+                        piezas[(k * anchoTablero) + j] = dimensionar(j, k + 1);
                     }
                 }
             }
         }
 
-        if (numeroLineasEnterasPorTurnos > 0) {
+        if (numeroLineasEnterasPorTurnos > 0) {//si hay mas de una linea borra varias y suma el numero de lineas borradas a la puntuacion
             numLineasBorradas += numeroLineasEnterasPorTurnos;
             marcador.setText(String.valueOf(numLineasBorradas));
             finalizoQuitarFilas = true;
@@ -265,17 +265,17 @@ public class Ventana extends JPanel implements ActionListener {
         Color color = colors[pieza.ordinal()];//obtenermos el color de la pieza
 
         g.setColor(color);
-        g.fillRect(x + 1, y + 1, squareWidth() - 2, squareHeight() - 2);//fillRect permite pintar de color un rectangulo 
+        g.fillRect(x + 1, y + 1, anchoPieza() - 2, alturaPieza() - 2);//fillRect permite pintar de color un rectangulo 
 
         g.setColor(color.brighter());//version mas brillante del color
-        g.drawLine(x, y + squareHeight() - 1, x, y);//Dibuja una línea, usando el color actual, entre los puntos (x1, y1) y (x2, y2)
-        g.drawLine(x, y, x + squareWidth() - 1, y);
+        g.drawLine(x, y + alturaPieza() - 1, x, y);//Dibuja una línea, usando el color actual, entre los puntos (x1, y1) y (x2, y2)
+        g.drawLine(x, y, x + anchoPieza() - 1, y);
 
         g.setColor(color.darker());//version mas oscura del color
-        g.drawLine(x + 1, y + squareHeight() - 1,
-                x + squareWidth() - 1, y + squareHeight() - 1);
-        g.drawLine(x + squareWidth() - 1, y + squareHeight() - 1,
-                x + squareWidth() - 1, y + 1);
+        g.drawLine(x + 1, y + alturaPieza() - 1,
+                x + anchoPieza() - 1, y + alturaPieza() - 1);
+        g.drawLine(x + anchoPieza() - 1, y + alturaPieza() - 1,
+                x + anchoPieza() - 1, y + 1);
     }
 
     class InteraccionTeclas extends KeyAdapter {
