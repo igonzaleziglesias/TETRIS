@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import static tetris.App.INDEX;
 import tetris.Piezas.PiezasTetris;
 
 public class Ventana extends JPanel implements ActionListener {
@@ -36,7 +37,7 @@ public class Ventana extends JPanel implements ActionListener {
     Piezas piezaActual;
     PiezasTetris[] piezas;
 
-    public Ventana(App juego) {//define la ventana de juego
+    public Ventana(CrearEntorno juego) {//define la ventana de juego
         setBounds(0, 0, 250, 600);
         setFocusable(true);
         piezaActual = new Piezas();
@@ -47,6 +48,10 @@ public class Ventana extends JPanel implements ActionListener {
         piezas = new PiezasTetris[anchoTablero * altoTablero];
         addKeyListener(new InteraccionTeclas());
         clear();
+    }
+
+    public String getMarcador() {
+        return marcador.getText();
     }
 
     @Override
@@ -186,23 +191,32 @@ public class Ventana extends JPanel implements ActionListener {
             timer.stop();
             empezada = false;
 
-            String[] elecciones = {"Aceptar"};//mensaje final de partida
-            //implementar aqui insercion en base de datos
-            int eleccion = JOptionPane.showOptionDialog(
-                    null,
-                    "GAME OVER\n" + "Puntuacion: " + marcador.getText(),
-                    null,
-                    JOptionPane.DEFAULT_OPTION,
-                    JOptionPane.INFORMATION_MESSAGE,
-                    null,
-                    elecciones,
-                    null
-            );
-            switch (eleccion) {
-                case 0:
-                    System.exit(0);
-                    break;
+            BaseDatos.Insert insertar = new BaseDatos.Insert();
+            if (marcador.getText() != " 0") {
+                insertar.insert(INDEX, JOptionPane.showInputDialog("Game Over\nNick: "), marcador.getText());//insertar puntuacion en la base de datos
+                Metodos.cargarTabla.vaciarTabla(Interfaz.tabla);
+                Metodos.cargarTabla.mostrarTablas(Interfaz.tabla);
+            } else {
+                JOptionPane.showMessageDialog(null, "PARA QUE JUEGAS? (¯.¯)");
             }
+
+//            String[] elecciones = {"Aceptar"};//mensaje final de partida
+//            //implementar aqui insercion en base de datos
+//            int eleccion = JOptionPane.showOptionDialog(
+//                    null,
+//                    "GAME OVER\n" + "Puntuacion: " + marcador.getText(),
+//                    null,
+//                    JOptionPane.DEFAULT_OPTION,
+//                    JOptionPane.INFORMATION_MESSAGE,
+//                    null,
+//                    elecciones,
+//                    null
+//            );
+//            switch (eleccion) {
+//                case 0:
+//                    System.exit(0);
+//                    break;
+//            }
             marcador.setText("game over");
         }
     }

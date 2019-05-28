@@ -1,70 +1,31 @@
 package tetris;
 
-import java.awt.*;
-import javax.swing.BorderFactory;
-import javax.swing.*;
+import java.util.ArrayList;
 
-public class App extends JFrame {
+/**
+ *
+ * @author Usuario
+ */
+public class App {
 
-    JLabel marcador;
+    static int INDEX;
 
     public App() {
-        setSize(515, 655);
-//        definir
-        marcador = new JLabel(" 0");
-        add(marcador, BorderLayout.SOUTH);
+        BaseDatos.Connect.connect();
+        BaseDatos.Create.createTable();
 
-        JPanel fondo = new JPanel();
-        Ventana ventana = new Ventana(this);        //juego
-        Interfaz interfaz = new Interfaz(this);  //informacion
+        BaseDatos.Quest quest = new BaseDatos.Quest();
+        ArrayList<Object> datos = new ArrayList<>();
 
-//        JLabel nombre = new JLabel();
-//        nombre.setText("TETRIS");
-//        
-//        JLabel puntuaciones = new JLabel();
-//        puntuaciones.setText("MEJORES PUNTUACIONES");
-//        Object[][] filas = {{"Iago", "10"}};
-//        Object[] columnas = {"nick", "puntuacion"};
-//
-//        JTable tabla = new JTable(filas, columnas);
-//
-//        JScrollPane barra = new JScrollPane(tabla);
+        BaseDatos.Delete delete = new BaseDatos.Delete();
+//        delete.deleteAll(); //USAR PARA BORRAR LA BASE DE DATOS ENTERA
+        datos = quest.selectAll();
+        System.out.println(datos.size());
+        INDEX = datos.size() + 1;
 
-        //dimensiones
-        fondo.setSize(500, 640);
-//        barra.setBounds(25, 400, 200, 100);
-        //añadir elementos
-        ventana.setBorder(BorderFactory.createLineBorder(Color.white, 1));
-        ventana.setLayout(null);
-        interfaz.setBorder(BorderFactory.createLineBorder(Color.white, 5));
-        interfaz.setLayout(null);
-
-        interfaz.setBackground(Color.BLACK);
-        ventana.setBackground(Color.BLACK);
-        fondo.setBackground(Color.WHITE);
-
-        //ASIGNACION Y DIMENSION DE OBJETOS
-//        interfaz.add(nombre);
-//        nombre.setBounds(100, 50, 50, 20);
-//        tabla.setLayout(null);
-//        interfaz.add(barra);
-
-//        tabla.setBounds(0, 0, 200, 80);
-        add(interfaz);
-        add(ventana);
-        add(fondo);
-        ventana.startGame();
-
-        setTitle("Tetris");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
-
-    public void exit() {
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
-
-    public JLabel getStatusBar() {
-        return marcador;
+        CrearEntorno game = new CrearEntorno();
+        game.setLocationRelativeTo(null);//Para posicionar la ventana en el centro de la pantalla(automatico al ser null)
+        game.setVisible(true);
     }
 
 }
