@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
