@@ -31,7 +31,7 @@ public class Quest {
     }
 
     public ArrayList selectAll() {
-        String sql = "SELECT id, name, puntos FROM puntuacion ORDER BY puntos desc";
+        String sql = "SELECT name, puntos, id FROM puntuacion ORDER BY puntos desc";
 
         try (Connection conn = this.connect();
                 Statement stmt = conn.createStatement();
@@ -39,9 +39,9 @@ public class Quest {
 
             while (rs.next()) {
                 alumno = new Object[4];
-                alumno[0] = rs.getInt("id");
-                alumno[1] = rs.getString("name");
-                alumno[2] = rs.getString("puntos");
+                alumno[2] = rs.getInt("id");
+                alumno[0] = rs.getString("name");
+                alumno[1] = rs.getString("puntos");
 
                 lista.add(alumno);
             }

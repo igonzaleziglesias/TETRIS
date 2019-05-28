@@ -13,9 +13,16 @@ public class Interfaz extends JPanel {
         setBounds(250, 0, 250, 600);//dimension del panel
         JLabel nombre = new JLabel();
         Font auxFont = nombre.getFont();
-        nombre.setFont(new Font(auxFont.getFontName(), auxFont.getStyle(), 30));//aumentamos el tamaño de la letra
+        nombre.setFont(new Font(auxFont.getFontName(), auxFont.getStyle(), 50));//aumentamos el tamaño de la letra
         nombre.setForeground(Color.WHITE);//dar color de letra blanco
         nombre.setText("TETRIS");//asignar texto
+        
+                JLabel score = new JLabel();
+        Font auxFont2 = score.getFont();
+        score.setFont(new Font(auxFont2.getFontName(), auxFont2.getStyle(), 30));//aumentamos el tamaño de la letra
+        score.setForeground(Color.WHITE);//dar color de letra blanco
+        score.setText("SCORE:");//asignar texto
+        
 
         JLabel puntuaciones = new JLabel();
         puntuaciones.setForeground(Color.WHITE);//color de letra blanco
@@ -53,7 +60,7 @@ public class Interfaz extends JPanel {
         tabla.setModel(new javax.swing.table.DefaultTableModel(//formato a la tabla 
                 new Object[][]{},
                 new String[]{
-                    "Nº", "NICK", "PUNTOS"
+                    "NICK", "PUNTOS","Nº"
                 }
         ));
         tabla.setBackground(Color.BLACK);//fonde negro
@@ -63,6 +70,7 @@ public class Interfaz extends JPanel {
         barra.setForeground(Color.WHITE);//letra blanca
         barra.setBackground(Color.BLACK);//fondo negro
         //añadir elementos
+        add(score);
         add(nombre);
         add(puntuaciones);
         add(instrucciones);
@@ -74,17 +82,19 @@ public class Interfaz extends JPanel {
         add(espacio);
         add(barra);
 //dimesnionar
-        nombre.setBounds(75, 50, 200, 50);
-        puntuaciones.setBounds(50, 380, 200, 20);
-        barra.setBounds(25, 400, 200, 100);
+        nombre.setBounds(35, 50, 200, 50);
+        puntuaciones.setBounds(50, 455, 200, 20);
+        barra.setBounds(25,475, 200, 70);
 
-        instrucciones.setBounds(30, 120, 200, 100);
-        left.setBounds(30, 140, 200, 100);
-        right.setBounds(30, 160, 200, 100);
-        up.setBounds(30, 180, 200, 100);
-        down.setBounds(30, 200, 200, 100);
-        p.setBounds(30, 220, 200, 100);
-        espacio.setBounds(30, 240, 200, 100);
+        score.setBounds(40, 140, 200,50);
+        
+        instrucciones.setBounds(30, 220, 200, 100);
+        left.setBounds(30, 240, 200, 100);
+        right.setBounds(30, 260, 200, 100);
+        up.setBounds(30, 280, 200, 100);
+        down.setBounds(30, 300, 200, 100);
+        p.setBounds(30, 320, 200, 100);
+        espacio.setBounds(30, 340, 200, 100);
 
         Metodos.cargarTabla.mostrarTablas(tabla);//mostrar datos en la tabla
 

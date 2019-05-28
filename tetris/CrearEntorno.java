@@ -9,10 +9,14 @@ public class CrearEntorno extends JFrame {
     JLabel marcador;
 
     public CrearEntorno() {
-        setSize(515, 655);
+        setSize(517, 650);
 //        definir
         marcador = new JLabel(" 0");
-        add(marcador, BorderLayout.SOUTH);
+//        marcador.setForeground(Color.white);
+        Font auxFont = marcador.getFont();
+        marcador.setFont(new Font(auxFont.getFontName(), auxFont.getStyle(), 30));//aumentamos el tamaño de la letra
+        marcador.setForeground(Color.WHITE);//dar color de letra blanco
+//        add(marcador, BorderLayout.SOUTH);
 
         JPanel fondo = new JPanel();
         Ventana ventana = new Ventana(this);        //juego
@@ -34,9 +38,9 @@ public class CrearEntorno extends JFrame {
         fondo.setSize(500, 640);
 //        barra.setBounds(25, 400, 200, 100);
         //añadir elementos
-        ventana.setBorder(BorderFactory.createLineBorder(Color.white, 1));
+        ventana.setBorder(BorderFactory.createLineBorder(Color.white, 2));
         ventana.setLayout(null);
-        interfaz.setBorder(BorderFactory.createLineBorder(Color.white, 5));
+        interfaz.setBorder(BorderFactory.createLineBorder(Color.white, 2));
         interfaz.setLayout(null);
 
         interfaz.setBackground(Color.BLACK);
@@ -50,6 +54,9 @@ public class CrearEntorno extends JFrame {
 //        interfaz.add(barra);
 
 //        tabla.setBounds(0, 0, 200, 80);
+        interfaz.add(marcador);
+        marcador.setBounds(180, 140, 50,50);
+        
         add(interfaz);
         add(ventana);
         add(fondo);

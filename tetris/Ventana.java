@@ -192,8 +192,14 @@ public class Ventana extends JPanel implements ActionListener {
             empezada = false;
 
             BaseDatos.Insert insertar = new BaseDatos.Insert();
+            String nick;
             if (marcador.getText() != " 0") {
-                insertar.insert(INDEX, JOptionPane.showInputDialog("Game Over\nNick: "), marcador.getText());//insertar puntuacion en la base de datos
+                
+                do{
+                 nick = JOptionPane.showInputDialog("Game Over\nNick: ");
+                }while ((nick.equalsIgnoreCase(" "))||(nick.equalsIgnoreCase(""))||(nick.equalsIgnoreCase("  "))||(nick.equalsIgnoreCase("   ")));
+                
+                insertar.insert(INDEX,nick , marcador.getText());//insertar puntuacion en la base de datos
                 Metodos.cargarTabla.vaciarTabla(Interfaz.tabla);
                 Metodos.cargarTabla.mostrarTablas(Interfaz.tabla);
             } else {

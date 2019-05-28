@@ -12,9 +12,9 @@ public class Create {
         String url = "jdbc:sqlite:puntuacion.db";
 
         String sql = "CREATE TABLE IF NOT EXISTS puntuacion ("
-                + "	id integer PRIMARY KEY,"
                 + "	name text NOT NULL,"
-                + "	puntos text NOT NULL"
+                + "	puntos text NOT NULL,"
+                  + "	id integer PRIMARY KEY"
                 + ");";
 
         try (Connection conn = DriverManager.getConnection(url);

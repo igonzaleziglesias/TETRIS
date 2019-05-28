@@ -5,7 +5,6 @@
  */
 package BaseDatos;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -15,7 +14,7 @@ import java.sql.SQLException;
  *
  * @author igonzaleziglesias
  */
-public class Insert{
+public class Insert {
 
     private static Connection connect() {
         // SQLite connection string
@@ -30,19 +29,20 @@ public class Insert{
     }
 
     public void insert(int id, String name, String puntos) {
-        String sql = "INSERT INTO puntuacion(id,name,puntos) VALUES(?,?,?)";
+        String sql = "INSERT INTO puntuacion(name,puntos,id) VALUES(?,?,?)";
 
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, id);
-            pstmt.setString(2, name);
-            pstmt.setString(3, puntos);
+
+            pstmt.setString(1, name);
+            pstmt.setString(2, puntos);
+            pstmt.setInt(3, id);
             pstmt.executeUpdate();
-            
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-   
+
     }
 
 }
