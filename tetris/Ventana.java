@@ -21,7 +21,7 @@ import javax.swing.Timer;
 import tetris.Piezas.PiezasTetris;
 
 public class Ventana extends JPanel implements ActionListener {
-
+    int contador = 0;
     final int anchoTablero = 10;
     final int altoTablero = 25;
 
@@ -36,13 +36,13 @@ public class Ventana extends JPanel implements ActionListener {
     Piezas piezaActual;
     PiezasTetris[] piezas;
 
-    public Ventana(Tetris juego) {//define la ventana de juego
+    public Ventana(App juego) {//define la ventana de juego
 
         setFocusable(true);
         piezaActual = new Piezas();
-        timer = new Timer(400, this);
+        timer = new Timer(800, this);
         timer.start();
-
+        
         marcador = juego.getStatusBar();
         piezas = new PiezasTetris[anchoTablero * altoTablero];
         addKeyListener(new InteraccionTeclas());
@@ -168,6 +168,15 @@ public class Ventana extends JPanel implements ActionListener {
     }
 
     private void nuevaPieza() {
+//        contador++;
+//        System.out.println(contador);
+//        
+//        if (contador>=5){
+//            timer = new Timer(400, this);
+//             timer.start();
+//        }
+//        
+        
         piezaActual.setPìezaAleatoria();
         posicionX = anchoTablero / 2 ;
         posicionY = altoTablero - 1 + piezaActual.minY();
