@@ -1,11 +1,8 @@
 package tetris;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.*;
 import javax.swing.BorderFactory;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class App extends JFrame {
 
@@ -20,6 +17,8 @@ public class App extends JFrame {
         fondo.setSize(500, 640);
         fondo.setBackground(Color.green);
 
+        
+        //juego
         Ventana ventana = new Ventana(this);
         ventana.setBorder(BorderFactory.createLineBorder(Color.white,1));
 
@@ -27,10 +26,12 @@ public class App extends JFrame {
         add(ventana);
         ventana.startGame();
 
+        
+        //informacion
         Interfaz interfaz = new Interfaz(this);
         interfaz.setBorder(BorderFactory.createLineBorder(Color.black,5));
 
-//        interfaz.setBackground(Color.red);
+
         add(interfaz);
         this.add(fondo);
 
