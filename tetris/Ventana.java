@@ -21,6 +21,7 @@ import javax.swing.Timer;
 import tetris.Piezas.PiezasTetris;
 
 public class Ventana extends JPanel implements ActionListener {
+
     int contador = 0;
     final int anchoTablero = 10;
     final int altoTablero = 25;
@@ -37,12 +38,12 @@ public class Ventana extends JPanel implements ActionListener {
     PiezasTetris[] piezas;
 
     public Ventana(App juego) {//define la ventana de juego
-
+        setBounds(0, 0, 250, 600);
         setFocusable(true);
         piezaActual = new Piezas();
         timer = new Timer(800, this);
         timer.start();
-        
+
         marcador = juego.getStatusBar();
         piezas = new PiezasTetris[anchoTablero * altoTablero];
         addKeyListener(new InteraccionTeclas());
@@ -93,7 +94,7 @@ public class Ventana extends JPanel implements ActionListener {
         pausa = !pausa;
         if (pausa) {
             timer.stop();
-            marcador.setText("Juego en pausa");    
+            marcador.setText("Juego en pausa");
         } else {
             timer.start();
             marcador.setText(String.valueOf(numLineasBorradas));
@@ -176,21 +177,21 @@ public class Ventana extends JPanel implements ActionListener {
 //             timer.start();
 //        }
 //        
-        
+
         piezaActual.setPìezaAleatoria();
-        posicionX = anchoTablero / 2 ;
+        posicionX = anchoTablero / 2;
         posicionY = altoTablero - 1 + piezaActual.minY();
 
         if (!Mover(piezaActual, posicionX, posicionY)) {
             piezaActual.establecerPieza(PiezasTetris.NoPieza);
             timer.stop();
-            empezada = false;   
-            
+            empezada = false;
+
             String[] elecciones = {"Aceptar"};//mensaje final de partida
             //implementar aqui insercion en base de datos
             int eleccion = JOptionPane.showOptionDialog(
                     null,
-                    "GAME OVER\n"+"Puntuacion: "+marcador.getText(),
+                    "GAME OVER\n" + "Puntuacion: " + marcador.getText(),
                     null,
                     JOptionPane.DEFAULT_OPTION,
                     JOptionPane.INFORMATION_MESSAGE,
@@ -201,9 +202,9 @@ public class Ventana extends JPanel implements ActionListener {
             switch (eleccion) {
                 case 0:
                     System.exit(0);
-                   break;
+                    break;
             }
-            marcador.setText("game over");            
+            marcador.setText("game over");
         }
     }
 
@@ -230,7 +231,7 @@ public class Ventana extends JPanel implements ActionListener {
     private void BorrarLineas() {//falta comentar
         int numeroLineasEnterasPorTurnos = 0;
 
-        for (int i = altoTablero -1; i >= 0; --i) {
+        for (int i = altoTablero - 1; i >= 0; --i) {
             boolean lineIsFull = true;
 
             for (int j = 0; j < anchoTablero; ++j) {
