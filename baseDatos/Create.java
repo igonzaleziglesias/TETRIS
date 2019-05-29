@@ -28,7 +28,7 @@ public class Create {
             exception=1;
         }
                if (exception==1){
-            throw new excepcionSql("Fallo Seleccion");
+            throw new excepcionSql("Fallo la creación de la tabla");
         }
     }
 

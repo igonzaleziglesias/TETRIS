@@ -46,7 +46,7 @@ public class Insert {
             exception=1;
         }
                 if (exception==1){
-            throw new excepcionSql("Fallo Seleccion");
+            throw new excepcionSql("Fallo la inserción");
         }
 
     }
