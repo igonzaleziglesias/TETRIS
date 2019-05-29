@@ -38,16 +38,18 @@ public class Ventana extends JPanel implements ActionListener {
     JLabel estado;
     Piezas piezaActual;
     PiezasTetris[] piezas;
+    int velocidad;
 
     public Ventana(CrearEntorno juego) {//define la ventana de juego
         setBounds(0, 0, 250, 600);
         setFocusable(true);
         piezaActual = new Piezas();
-        timer = new Timer(niveles.ElegirNivel.nivel(), this);
+        velocidad = niveles.ElegirNivel.nivel();
+        timer = new Timer(velocidad, this);
         timer.start();
 
         marcador = juego.getScore();
-        estado= juego.getEstado();
+        estado = juego.getEstado();
         piezas = new PiezasTetris[anchoTablero * altoTablero];
         addKeyListener(new InteraccionTeclas());
         clear();
@@ -176,14 +178,48 @@ public class Ventana extends JPanel implements ActionListener {
     }
 
     private void nuevaPieza() {
-//        contador++;
-//        System.out.println(contador);
-//        
-//        if (contador>=5){
-//            timer = new Timer(400, this);
-//             timer.start();
+        contador++;
+        System.out.println(contador);
+        if (velocidad > 400) {
+            if ((contador == 10) && (velocidad - 200 > 0)) {
+                timer.stop();
+                velocidad = velocidad - 200;
+                timer = new Timer(velocidad, this);
+                System.out.println(velocidad);
+                timer.start();
+            }
+            if ((contador == 20) && (velocidad - 200 > 0)) {
+                timer.stop();
+                velocidad = velocidad - 200;
+                timer = new Timer(velocidad, this);
+                System.out.println(velocidad);
+                timer.start();
+            }
+        }
+        if (velocidad > 100) {
+            if ((contador == 30) && (velocidad - 200 > 0)) {
+                timer.stop();
+                velocidad = velocidad - 200;
+                timer = new Timer(velocidad, this);
+                System.out.println(velocidad);
+                timer.start();
+            }
+        }
+        if ((contador == 40) && (velocidad - 100 > 0)) {
+            timer.stop();
+            velocidad = velocidad - 100;
+            timer = new Timer(velocidad, this);
+            System.out.println(velocidad);
+            timer.start();
+        }
+        //Demasiado RAPIDO
+//        if ((contador == 50) && (velocidad - 50 > 0)) {
+//            timer.stop();
+//            velocidad = velocidad - 50;
+//            timer = new Timer(velocidad, this);
+//            System.out.println(velocidad);
+//            timer.start();
 //        }
-//        
 
         piezaActual.setPìezaAleatoria();
         posicionX = anchoTablero / 2;
@@ -197,14 +233,14 @@ public class Ventana extends JPanel implements ActionListener {
             baseDatos.Insert insertar = new baseDatos.Insert();
             String nick;
             if (marcador.getText() != "0") {
-                
-                do{
-                 nick = Pedir.pedirString("Game Over\nNick: ");
-                }while ((nick.equalsIgnoreCase(" "))||(nick.equalsIgnoreCase(""))||(nick.equalsIgnoreCase("  "))||(nick.equalsIgnoreCase("   ")));
-                try{
-                insertar.insert(INDEX,nick , marcador.getText());//insertar puntuacion en la base de datos
-                }catch(excepcionSql e){
-                    
+
+                do {
+                    nick = Pedir.pedirString("Game Over\nNick: ");
+                } while ((nick.equalsIgnoreCase(" ")) || (nick.equalsIgnoreCase("")) || (nick.equalsIgnoreCase("  ")) || (nick.equalsIgnoreCase("   ")));
+                try {
+                    insertar.insert(INDEX, nick, marcador.getText());//insertar puntuacion en la base de datos
+                } catch (excepcionSql e) {
+
                 }
                 metodos.cargarTabla.vaciarTabla(Interfaz.tabla);
                 metodos.cargarTabla.mostrarTablas(Interfaz.tabla);
@@ -282,7 +318,7 @@ public class Ventana extends JPanel implements ActionListener {
             finalizoQuitarFilas = true;
             piezaActual.establecerPieza(PiezasTetris.NoPieza);
             repaint();
-            
+
             sonido.Sonido son = new sonido.Sonido();
             son.start();
         }
