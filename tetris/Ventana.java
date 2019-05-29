@@ -34,6 +34,7 @@ public class Ventana extends JPanel implements ActionListener {
     int posicionX = 0;
     int posicionY = 0;
     JLabel marcador;
+    JLabel estado;
     Piezas piezaActual;
     PiezasTetris[] piezas;
 
@@ -44,7 +45,8 @@ public class Ventana extends JPanel implements ActionListener {
         timer = new Timer(800, this);
         timer.start();
 
-        marcador = juego.getStatusBar();
+        marcador = juego.getScore();
+        estado= juego.getEstado();
         piezas = new PiezasTetris[anchoTablero * altoTablero];
         addKeyListener(new InteraccionTeclas());
         clear();
@@ -98,10 +100,10 @@ public class Ventana extends JPanel implements ActionListener {
         pausa = !pausa;
         if (pausa) {
             timer.stop();
-            marcador.setText("Juego en pausa");
+            estado.setText("Pausa");
         } else {
             timer.start();
-            marcador.setText(String.valueOf(numLineasBorradas));
+            estado.setText("En juego");
         }
         repaint();
     }
@@ -193,7 +195,7 @@ public class Ventana extends JPanel implements ActionListener {
 
             BaseDatos.Insert insertar = new BaseDatos.Insert();
             String nick;
-            if (marcador.getText() != " 0") {
+            if (marcador.getText() != "0") {
                 
                 do{
                  nick = JOptionPane.showInputDialog("Game Over\nNick: ");
@@ -223,7 +225,7 @@ public class Ventana extends JPanel implements ActionListener {
 //                    System.exit(0);
 //                    break;
 //            }
-            marcador.setText("game over");
+            estado.setText("Game over");
         }
     }
 
@@ -276,6 +278,9 @@ public class Ventana extends JPanel implements ActionListener {
             finalizoQuitarFilas = true;
             piezaActual.establecerPieza(PiezasTetris.NoPieza);
             repaint();
+            
+            Sonido.Sonido son = new Sonido.Sonido();
+            son.start();
         }
     }
 

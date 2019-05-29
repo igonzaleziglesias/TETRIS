@@ -1,5 +1,6 @@
 package tetris;
 
+import BaseDatos.Alumno;
 import java.util.ArrayList;
 
 /**
@@ -15,12 +16,12 @@ public class App {
         BaseDatos.Create.createTable();
 
         BaseDatos.Quest quest = new BaseDatos.Quest();
-        ArrayList<Object> datos = new ArrayList<>();
+        ArrayList<Alumno> datos = new ArrayList<Alumno>();
 
         BaseDatos.Delete delete = new BaseDatos.Delete();
-//        delete.deleteAll(); //USAR PARA BORRAR LA BASE DE DATOS ENTERA
+//     delete.deleteAll(); //USAR PARA BORRAR LA BASE DE DATOS ENTERA
         datos = quest.selectAll();
-        System.out.println(datos.size());
+//        System.out.println(datos.size());
         INDEX = datos.size() + 1;
 
         CrearEntorno game = new CrearEntorno();

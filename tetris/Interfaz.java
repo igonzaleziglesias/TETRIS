@@ -35,27 +35,27 @@ public class Interfaz extends JPanel {
 
         JLabel left = new JLabel();
         left.setForeground(Color.WHITE);//dar color blanco
-        left.setText("VK_LEFT----Mover a la izquierda");//asignar valor de texto
+        left.setText("VK_LEFT-Mover a la izquierda");//asignar valor de texto
 
         JLabel right = new JLabel();
         right.setForeground(Color.WHITE);//dar color blanco
-        right.setText("VK_RIGHT----Mover a la derecha");//asignar valor de texto
+        right.setText("VK_RIGHT-Mover a la derecha");//asignar valor de texto
 
         JLabel up = new JLabel();
         up.setForeground(Color.WHITE);//dar color blanco
-        up.setText("VK_UP--------------------Girar pieza");//asignar valor de texto
+        up.setText("VK_UP-----------------Girar pieza");//asignar valor de texto
 
         JLabel down = new JLabel();
         down.setForeground(Color.WHITE);//dar color blanco
-        down.setText("VK_DOWN-------------Bajar rapido");//asignar valor de texto
+        down.setText("VK_DOWN----------Bajar rapido");//asignar valor de texto
 
         JLabel p = new JLabel();
         p.setForeground(Color.WHITE);//dar color blanco
-        p.setText("p-----------------------------------Pausa");//asignar valor de texto
+        p.setText("p------------------------------Pausa");//asignar valor de texto
 
         JLabel espacio = new JLabel();
         espacio.setForeground(Color.WHITE);//dar color blanco
-        espacio.setText("VK_SPACE----------bajar de golpe");//asignar valor de texto
+        espacio.setText("VK_SPACE-------bajar de golpe");//asignar valor de texto
 
         tabla.setModel(new javax.swing.table.DefaultTableModel(//formato a la tabla 
                 new Object[][]{},
@@ -69,6 +69,7 @@ public class Interfaz extends JPanel {
         JScrollPane barra = new JScrollPane(tabla);//para mostrar los titulos de las columnas
         barra.setForeground(Color.WHITE);//letra blanca
         barra.setBackground(Color.BLACK);//fondo negro
+        tabla.setEnabled(false);
         //añadir elementos
         add(score);
         add(nombre);
@@ -88,13 +89,13 @@ public class Interfaz extends JPanel {
 
         score.setBounds(40, 140, 200,50);
         
-        instrucciones.setBounds(30, 220, 200, 100);
-        left.setBounds(30, 240, 200, 100);
-        right.setBounds(30, 260, 200, 100);
-        up.setBounds(30, 280, 200, 100);
-        down.setBounds(30, 300, 200, 100);
-        p.setBounds(30, 320, 200, 100);
-        espacio.setBounds(30, 340, 200, 100);
+        instrucciones.setBounds(20, 220, 200, 100);
+        left.setBounds(20, 240, 250, 100);
+        right.setBounds(20, 260, 250, 100);
+        up.setBounds(20, 280, 250, 100);
+        down.setBounds(20, 300, 250, 100);
+        p.setBounds(20, 320, 250, 100);
+        espacio.setBounds(20, 340, 250, 100);
 
         Metodos.cargarTabla.mostrarTablas(tabla);//mostrar datos en la tabla
 

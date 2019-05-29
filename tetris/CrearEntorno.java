@@ -7,17 +7,22 @@ import javax.swing.*;
 public class CrearEntorno extends JFrame {
 
     JLabel marcador;
-
+    JLabel estado;
     public CrearEntorno() {
-        setSize(517, 650);
+        setSize(502, 630);
 //        definir
-        marcador = new JLabel(" 0");
+        marcador = new JLabel("0");
+        estado = new JLabel("En juego");
 //        marcador.setForeground(Color.white);
         Font auxFont = marcador.getFont();
         marcador.setFont(new Font(auxFont.getFontName(), auxFont.getStyle(), 30));//aumentamos el tamaño de la letra
         marcador.setForeground(Color.WHITE);//dar color de letra blanco
 //        add(marcador, BorderLayout.SOUTH);
 
+        Font auxFont2 = estado.getFont();
+        estado.setFont(new Font(auxFont2.getFontName(), auxFont2.getStyle(), 30));//aumentamos el tamaño de la letra
+        estado.setForeground(Color.WHITE);//dar color de letra blanco
+        
         JPanel fondo = new JPanel();
         Ventana ventana = new Ventana(this);        //juego
         Interfaz interfaz = new Interfaz(this);  //informacion
@@ -56,6 +61,8 @@ public class CrearEntorno extends JFrame {
 //        tabla.setBounds(0, 0, 200, 80);
         interfaz.add(marcador);
         marcador.setBounds(180, 140, 50,50);
+        interfaz.add(estado);
+        estado.setBounds(40,190,200,50);
         
         add(interfaz);
         add(ventana);
@@ -70,8 +77,12 @@ public class CrearEntorno extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public JLabel getStatusBar() {
+    public JLabel getScore() {
         return marcador;
+    }
+    
+    public JLabel getEstado(){
+        return estado;
     }
 
 }
