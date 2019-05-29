@@ -1,5 +1,6 @@
 package baseDatos;
 
+import excepciones.excepcionSql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,11 +14,9 @@ import java.util.Iterator;
  *
  * @author igonzaleziglesias
  */
-public class Quest{
+public class Quest {
 
-    
-
-   ArrayList<Alumno> lista = new ArrayList<Alumno>();
+    ArrayList<Alumno> lista = new ArrayList<Alumno>();
 
     private Connection connect() {
         // SQLite connection string
@@ -31,28 +30,35 @@ public class Quest{
         return conn;
     }
 
-    public ArrayList<Alumno> selectAll() {
+    public ArrayList<Alumno> selectAll() throws excepcionSql{
         String sql = "SELECT name, puntos, id FROM puntuacion";
-
+        int exception;
         try (Connection conn = this.connect();
                 Statement stmt = conn.createStatement();
                 ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                Alumno alum = new Alumno(rs.getInt("id"),rs.getString("name"),rs.getString("puntos"));
+                Alumno alum = new Alumno(rs.getInt("id"), rs.getString("name"), rs.getString("puntos"));
 //                alumno[2] = rs.getInt("id");
 //                alumno[0] = rs.getString("name");
 //                alumno[1] = rs.getString("puntos");
 
                 lista.add(alum);
             }
-
+            exception = 0;
         } catch (SQLException e) {
+            
             System.out.println(e.getMessage());
+            exception = 1;
+        }
+        
+        if (exception==1){
+            throw new excepcionSql("Fallo Seleccion");
         }
         try {
             this.connect().close();
         } catch (SQLException ex) {
+
         }
         Collections.sort(lista);
 //        for (int i=0 ;i<lista.size();i++){
@@ -62,5 +68,4 @@ public class Quest{
 
     }
 
-   
 }

@@ -42,7 +42,7 @@ public class Ventana extends JPanel implements ActionListener {
         setBounds(0, 0, 250, 600);
         setFocusable(true);
         piezaActual = new Piezas();
-        timer = new Timer(800, this);
+        timer = new Timer(niveles.ElegirNivel.nivel(), this);
         timer.start();
 
         marcador = juego.getScore();
@@ -205,7 +205,7 @@ public class Ventana extends JPanel implements ActionListener {
                 metodos.cargarTabla.vaciarTabla(Interfaz.tabla);
                 metodos.cargarTabla.mostrarTablas(Interfaz.tabla);
             } else {
-                JOptionPane.showMessageDialog(null, "PARA QUE JUEGAS? (¯.¯)");
+                JOptionPane.showMessageDialog(null, "PARA QUE JUEGAS? (--_--)");
             }
 
 //            String[] elecciones = {"Aceptar"};//mensaje final de partida

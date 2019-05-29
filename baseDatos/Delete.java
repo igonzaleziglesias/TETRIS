@@ -1,5 +1,6 @@
 package baseDatos;
 
+import excepciones.excepcionSql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,17 +20,22 @@ public class Delete {
         return conn;
     }
 
-    public void deleteAll() {
+    public void deleteAll() throws excepcionSql {
         String sql = "DELETE FROM puntuacion";
-
+        int exception;
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
   
             pstmt.executeUpdate();
-
+            exception=0;
         } catch (SQLException e) {
+            
             System.out.println(e.getMessage());
+            exception=1;
+        }
+                if (exception==1){
+            throw new excepcionSql("Fallo Seleccion");
         }
     }
 

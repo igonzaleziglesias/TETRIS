@@ -5,6 +5,7 @@
  */
 package baseDatos;
 
+import excepciones.excepcionSql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,9 +29,9 @@ public class Insert {
         return conn;
     }
 
-    public void insert(int id, String name, String puntos) {
+    public void insert(int id, String name, String puntos) throws excepcionSql {
         String sql = "INSERT INTO puntuacion(name,puntos,id) VALUES(?,?,?)";
-
+    int exception;
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -38,9 +39,14 @@ public class Insert {
             pstmt.setString(2, puntos);
             pstmt.setInt(3, id);
             pstmt.executeUpdate();
-
+            exception=0;
         } catch (SQLException e) {
+            
             System.out.println(e.getMessage());
+            exception=1;
+        }
+                if (exception==1){
+            throw new excepcionSql("Fallo Seleccion");
         }
 
     }
