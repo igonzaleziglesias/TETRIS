@@ -16,13 +16,12 @@ public class Interfaz extends JPanel {
         nombre.setFont(new Font(auxFont.getFontName(), auxFont.getStyle(), 50));//aumentamos el tamaño de la letra
         nombre.setForeground(Color.WHITE);//dar color de letra blanco
         nombre.setText("TETRIS");//asignar texto
-        
-                JLabel score = new JLabel();
+
+        JLabel score = new JLabel();
         Font auxFont2 = score.getFont();
         score.setFont(new Font(auxFont2.getFontName(), auxFont2.getStyle(), 30));//aumentamos el tamaño de la letra
         score.setForeground(Color.WHITE);//dar color de letra blanco
         score.setText("SCORE:");//asignar texto
-        
 
         JLabel puntuaciones = new JLabel();
         puntuaciones.setForeground(Color.WHITE);//color de letra blanco
@@ -60,7 +59,7 @@ public class Interfaz extends JPanel {
         tabla.setModel(new javax.swing.table.DefaultTableModel(//formato a la tabla 
                 new Object[][]{},
                 new String[]{
-                    "NICK", "PUNTOS","Nº"
+                    "NICK", "PUNTOS", "Nº"
                 }
         ));
         tabla.setBackground(Color.BLACK);//fonde negro
@@ -85,10 +84,10 @@ public class Interfaz extends JPanel {
 //dimesnionar
         nombre.setBounds(35, 50, 200, 50);
         puntuaciones.setBounds(50, 455, 200, 20);
-        barra.setBounds(25,475, 200, 70);
+        barra.setBounds(25, 475, 200, 70);
 
-        score.setBounds(40, 140, 200,50);
-        
+        score.setBounds(40, 140, 200, 50);
+
         instrucciones.setBounds(20, 220, 200, 100);
         left.setBounds(20, 240, 250, 100);
         right.setBounds(20, 260, 250, 100);

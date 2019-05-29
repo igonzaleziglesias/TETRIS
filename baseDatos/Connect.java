@@ -1,4 +1,3 @@
-
 package baseDatos;
 
 import java.sql.Connection;

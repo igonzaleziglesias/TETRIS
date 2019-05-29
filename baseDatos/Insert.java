@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package baseDatos;
 
 import excepciones.excepcionSql;
@@ -31,7 +26,7 @@ public class Insert {
 
     public void insert(int id, String name, String puntos) throws excepcionSql {
         String sql = "INSERT INTO puntuacion(name,puntos,id) VALUES(?,?,?)";
-    int exception;
+        int exception;
         try (Connection conn = this.connect();
                 PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
@@ -39,13 +34,13 @@ public class Insert {
             pstmt.setString(2, puntos);
             pstmt.setInt(3, id);
             pstmt.executeUpdate();
-            exception=0;
+            exception = 0;
         } catch (SQLException e) {
-            
+
             System.out.println(e.getMessage());
-            exception=1;
+            exception = 1;
         }
-                if (exception==1){
+        if (exception == 1) {
             throw new excepcionSql("Fallo la inserción");
         }
 

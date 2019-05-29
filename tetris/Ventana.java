@@ -53,6 +53,7 @@ public class Ventana extends JPanel implements ActionListener {
         piezas = new PiezasTetris[anchoTablero * altoTablero];
         addKeyListener(new InteraccionTeclas());
         clear();
+
     }
 
     public String getMarcador() {
@@ -157,7 +158,7 @@ public class Ventana extends JPanel implements ActionListener {
         }
     }
 
-    private void clear() {//dejar la vetnana vacia
+    private void clear() {//dejar la pieza vacia
         for (int i = 0; i < altoTablero * anchoTablero; ++i) {
             piezas[i] = PiezasTetris.NoPieza;
         }
@@ -248,24 +249,8 @@ public class Ventana extends JPanel implements ActionListener {
                 JOptionPane.showMessageDialog(null, "PARA QUE JUEGAS? (--_--)");
             }
 
-//            String[] elecciones = {"Aceptar"};//mensaje final de partida
-//            //implementar aqui insercion en base de datos
-//            int eleccion = JOptionPane.showOptionDialog(
-//                    null,
-//                    "GAME OVER\n" + "Puntuacion: " + marcador.getText(),
-//                    null,
-//                    JOptionPane.DEFAULT_OPTION,
-//                    JOptionPane.INFORMATION_MESSAGE,
-//                    null,
-//                    elecciones,
-//                    null
-//            );
-//            switch (eleccion) {
-//                case 0:
-//                    System.exit(0);
-//                    break;
-//            }
             estado.setText("Game over");
+
         }
     }
 
@@ -314,12 +299,12 @@ public class Ventana extends JPanel implements ActionListener {
 
         if (numeroLineasEnterasPorTurnos > 0) {//si hay mas de una linea borra varias y suma el numero de lineas borradas a la puntuacion
             numLineasBorradas += numeroLineasEnterasPorTurnos;
-            marcador.setText(String.valueOf(numLineasBorradas));
+            marcador.setText(String.valueOf(numLineasBorradas * 10));
             if ((velocidad <= 400) && (velocidad > 100)) {
-                marcador.setText(String.valueOf(numLineasBorradas * 2));
+                marcador.setText(String.valueOf(numLineasBorradas * 20));
             }
             if ((velocidad == 100)) {
-                marcador.setText(String.valueOf(numLineasBorradas * 3));
+                marcador.setText(String.valueOf(numLineasBorradas * 30));
             }
             finalizoQuitarFilas = true;
             piezaActual.establecerPieza(PiezasTetris.NoPieza);

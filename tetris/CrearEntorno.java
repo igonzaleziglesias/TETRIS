@@ -8,6 +8,7 @@ public class CrearEntorno extends JFrame {
 
     JLabel marcador;
     JLabel estado;
+
     public CrearEntorno() {
         setSize(502, 630);
 //        definir
@@ -22,22 +23,10 @@ public class CrearEntorno extends JFrame {
         Font auxFont2 = estado.getFont();
         estado.setFont(new Font(auxFont2.getFontName(), auxFont2.getStyle(), 30));//aumentamos el tamaño de la letra
         estado.setForeground(Color.WHITE);//dar color de letra blanco
-        
+
         JPanel fondo = new JPanel();
         Ventana ventana = new Ventana(this);        //juego
         Interfaz interfaz = new Interfaz(this);  //informacion
-
-//        JLabel nombre = new JLabel();
-//        nombre.setText("TETRIS");
-//        
-//        JLabel puntuaciones = new JLabel();
-//        puntuaciones.setText("MEJORES PUNTUACIONES");
-//        Object[][] filas = {{"Iago", "10"}};
-//        Object[] columnas = {"nick", "puntuacion"};
-//
-//        JTable tabla = new JTable(filas, columnas);
-//
-//        JScrollPane barra = new JScrollPane(tabla);
 
         //dimensiones
         fondo.setSize(500, 640);
@@ -53,24 +42,20 @@ public class CrearEntorno extends JFrame {
         fondo.setBackground(Color.WHITE);
 
         //ASIGNACION Y DIMENSION DE OBJETOS
-//        interfaz.add(nombre);
-//        nombre.setBounds(100, 50, 50, 20);
-//        tabla.setLayout(null);
-//        interfaz.add(barra);
-
-//        tabla.setBounds(0, 0, 200, 80);
         interfaz.add(marcador);
-        marcador.setBounds(180, 140, 50,50);
+        marcador.setBounds(170, 140, 100, 50);
         interfaz.add(estado);
-        estado.setBounds(40,190,200,50);
-        
+        estado.setBounds(40, 190, 200, 50);
+
         add(interfaz);
         add(ventana);
         add(fondo);
         ventana.startGame();
 
         setTitle("Tetris");
+
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+
     }
 
     public void exit() {
@@ -80,8 +65,8 @@ public class CrearEntorno extends JFrame {
     public JLabel getScore() {
         return marcador;
     }
-    
-    public JLabel getEstado(){
+
+    public JLabel getEstado() {
         return estado;
     }
 

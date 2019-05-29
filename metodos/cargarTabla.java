@@ -38,43 +38,42 @@ public class cargarTabla {
         ArrayList<Object[]> datos = new ArrayList<Object[]>();
 
         //ArrayList de alumnos
-        try{
-            
-        
-        ArrayList<Alumno> lista = quest.selectAll();
+        try {
 
-        int contador = lista.size();
+            ArrayList<Alumno> lista = quest.selectAll();
+
+            int contador = lista.size();
 //        System.out.println(contador);
 //        System.out.println(lista.size());
-        
-        for (Alumno ele : lista) {
-            Object[] dato = {"", "", 1};
-//            System.out.println(ele.getName());
-            String name, puntos;
-            int id;
-            name = ele.getName();
-            puntos = ele.getPuntos();
-            id = ele.getId();
 
-            dato[0] = name;
-            dato[1] = puntos;
-            dato[2] = id;
+            for (Alumno ele : lista) {
+                Object[] dato = {"", "", 1};
+//            System.out.println(ele.getName());
+                String name, puntos;
+                int id;
+                name = ele.getName();
+                puntos = ele.getPuntos();
+                id = ele.getId();
+
+                dato[0] = name;
+                dato[1] = puntos;
+                dato[2] = id;
 //            System.out.println(dato[0]);
-            datos.add(dato);
-        }
+                datos.add(dato);
+            }
 //        System.out.println("");
 //        for (Object[] ele : datos) {
 //            System.out.println(ele[0]);
 //        }
 
-        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
-        for (Object[] ele : datos) {
-            modelo.addRow(ele);
-        }
+            DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+            for (Object[] ele : datos) {
+                modelo.addRow(ele);
+            }
 
-        tabla.setModel(modelo);
-        }catch(excepcionSql e){
-            
+            tabla.setModel(modelo);
+        } catch (excepcionSql e) {
+
         }
     }
 }

@@ -86,7 +86,7 @@ public class Piezas {
                 break;
             case 7:
                 System.out.println("piezaLEspejo");
-                break;    
+                break;
 
         }
 

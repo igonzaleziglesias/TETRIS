@@ -30,7 +30,7 @@ public class Quest {
         return conn;
     }
 
-    public ArrayList<Alumno> selectAll() throws excepcionSql{
+    public ArrayList<Alumno> selectAll() throws excepcionSql {
         String sql = "SELECT name, puntos, id FROM puntuacion";
         int exception;
         try (Connection conn = this.connect();
@@ -47,12 +47,12 @@ public class Quest {
             }
             exception = 0;
         } catch (SQLException e) {
-            
+
             System.out.println(e.getMessage());
             exception = 1;
         }
-        
-        if (exception==1){
+
+        if (exception == 1) {
             throw new excepcionSql("Fallo la seleccion");
         }
         try {
