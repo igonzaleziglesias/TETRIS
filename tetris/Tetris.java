@@ -1,7 +1,5 @@
 package tetris;
 
-import java.util.ArrayList;
-
 public class Tetris {
 
     public static void main(String[] args) {

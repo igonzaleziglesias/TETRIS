@@ -6,10 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-/**
- *
- * @author igonzaleziglesias
- */
+
 public class Insert {
 
     private static Connection connect() {
