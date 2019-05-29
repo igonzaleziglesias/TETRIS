@@ -5,6 +5,7 @@
  */
 package tetris;
 
+import excepciones.excepcionSql;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -200,8 +201,11 @@ public class Ventana extends JPanel implements ActionListener {
                 do{
                  nick = Pedir.pedirString("Game Over\nNick: ");
                 }while ((nick.equalsIgnoreCase(" "))||(nick.equalsIgnoreCase(""))||(nick.equalsIgnoreCase("  "))||(nick.equalsIgnoreCase("   ")));
-                
+                try{
                 insertar.insert(INDEX,nick , marcador.getText());//insertar puntuacion en la base de datos
+                }catch(excepcionSql e){
+                    
+                }
                 metodos.cargarTabla.vaciarTabla(Interfaz.tabla);
                 metodos.cargarTabla.mostrarTablas(Interfaz.tabla);
             } else {

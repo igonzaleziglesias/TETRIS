@@ -7,6 +7,7 @@ package metodos;
 
 import baseDatos.Alumno;
 import baseDatos.Quest;
+import excepciones.excepcionSql;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -37,7 +38,11 @@ public class cargarTabla {
         ArrayList<Object[]> datos = new ArrayList<Object[]>();
 
         //ArrayList de alumnos
+        try{
+            
+        
         ArrayList<Alumno> lista = quest.selectAll();
+
         int contador = lista.size();
 //        System.out.println(contador);
 //        System.out.println(lista.size());
@@ -68,6 +73,8 @@ public class cargarTabla {
         }
 
         tabla.setModel(modelo);
-
+        }catch(excepcionSql e){
+            
+        }
     }
 }
