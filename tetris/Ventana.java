@@ -12,11 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import libreria.Pedir;
 import static tetris.App.INDEX;
 import tetris.Piezas.PiezasTetris;
 
@@ -198,7 +198,7 @@ public class Ventana extends JPanel implements ActionListener {
             if (marcador.getText() != "0") {
                 
                 do{
-                 nick = JOptionPane.showInputDialog("Game Over\nNick: ");
+                 nick = Pedir.pedirString("Game Over\nNick: ");
                 }while ((nick.equalsIgnoreCase(" "))||(nick.equalsIgnoreCase(""))||(nick.equalsIgnoreCase("  "))||(nick.equalsIgnoreCase("   ")));
                 
                 insertar.insert(INDEX,nick , marcador.getText());//insertar puntuacion en la base de datos
