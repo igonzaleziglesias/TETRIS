@@ -46,7 +46,7 @@ public class cargarTabla {
         int contador = lista.size();
 //        System.out.println(contador);
 //        System.out.println(lista.size());
-
+        
         for (Alumno ele : lista) {
             Object[] dato = {"", "", 1};
 //            System.out.println(ele.getName());
