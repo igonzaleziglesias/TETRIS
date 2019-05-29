@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Metodos;
+package metodos;
 
-import BaseDatos.Alumno;
-import BaseDatos.Quest;
+import baseDatos.Alumno;
+import baseDatos.Quest;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

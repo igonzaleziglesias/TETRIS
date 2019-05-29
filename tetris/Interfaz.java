@@ -97,7 +97,7 @@ public class Interfaz extends JPanel {
         p.setBounds(20, 320, 250, 100);
         espacio.setBounds(20, 340, 250, 100);
 
-        Metodos.cargarTabla.mostrarTablas(tabla);//mostrar datos en la tabla
+        metodos.cargarTabla.mostrarTablas(tabla);//mostrar datos en la tabla
 
     }
 }

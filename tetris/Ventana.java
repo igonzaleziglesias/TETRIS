@@ -193,7 +193,7 @@ public class Ventana extends JPanel implements ActionListener {
             timer.stop();
             empezada = false;
 
-            BaseDatos.Insert insertar = new BaseDatos.Insert();
+            baseDatos.Insert insertar = new baseDatos.Insert();
             String nick;
             if (marcador.getText() != "0") {
                 
@@ -202,8 +202,8 @@ public class Ventana extends JPanel implements ActionListener {
                 }while ((nick.equalsIgnoreCase(" "))||(nick.equalsIgnoreCase(""))||(nick.equalsIgnoreCase("  "))||(nick.equalsIgnoreCase("   ")));
                 
                 insertar.insert(INDEX,nick , marcador.getText());//insertar puntuacion en la base de datos
-                Metodos.cargarTabla.vaciarTabla(Interfaz.tabla);
-                Metodos.cargarTabla.mostrarTablas(Interfaz.tabla);
+                metodos.cargarTabla.vaciarTabla(Interfaz.tabla);
+                metodos.cargarTabla.mostrarTablas(Interfaz.tabla);
             } else {
                 JOptionPane.showMessageDialog(null, "PARA QUE JUEGAS? (¯.¯)");
             }
@@ -279,7 +279,7 @@ public class Ventana extends JPanel implements ActionListener {
             piezaActual.establecerPieza(PiezasTetris.NoPieza);
             repaint();
             
-            Sonido.Sonido son = new Sonido.Sonido();
+            sonido.Sonido son = new sonido.Sonido();
             son.start();
         }
     }
