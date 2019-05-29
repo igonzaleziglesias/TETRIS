@@ -315,6 +315,12 @@ public class Ventana extends JPanel implements ActionListener {
         if (numeroLineasEnterasPorTurnos > 0) {//si hay mas de una linea borra varias y suma el numero de lineas borradas a la puntuacion
             numLineasBorradas += numeroLineasEnterasPorTurnos;
             marcador.setText(String.valueOf(numLineasBorradas));
+            if ((velocidad <= 400) && (velocidad > 100)) {
+                marcador.setText(String.valueOf(numLineasBorradas * 2));
+            }
+            if ((velocidad == 100)) {
+                marcador.setText(String.valueOf(numLineasBorradas * 3));
+            }
             finalizoQuitarFilas = true;
             piezaActual.establecerPieza(PiezasTetris.NoPieza);
             repaint();
