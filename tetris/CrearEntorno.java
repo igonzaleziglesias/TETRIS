@@ -11,6 +11,7 @@ public class CrearEntorno extends JFrame {
 
     public CrearEntorno() {
         setSize(502, 630);
+        setResizable(false);
 //        definir
         marcador = new JLabel("0");
         estado = new JLabel("En juego");

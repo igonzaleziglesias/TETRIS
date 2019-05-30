@@ -321,13 +321,13 @@ public class Ventana extends JPanel implements ActionListener {
     private void pintarPiezas(Graphics g, int x, int y, PiezasTetris pieza) {
         Color colors[] = {//definimos todos los colores, cada color se corresponde a una pieza (mismo orden que en el enum)
             new Color(0, 0, 0),
-            new Color(204, 102, 102),//rojo
-            new Color(102, 204, 102),//verde
-            new Color(102, 204, 204),//azul claro
-            new Color(204, 102, 204),//rosa
-            new Color(102, 102, 204),//azul oscuro
-            new Color(204, 204, 102),//amarillo
-            new Color(218, 170, 0)//naranja
+            new Color(230, 0, 0),//rojo->rojo mas intenso Z
+            new Color(60, 185, 50),//verde -> verde mas intenso s
+            new Color(40, 230, 225),//azul claro->azul mas claro I
+            new Color(165, 45, 135),//rosa -> morado T
+            new Color(255, 215, 0),//azul oscuro->amarillo cuadrado
+            new Color(60, 75, 195),//amarillo->ozul oscuro L
+            new Color(255, 150, 0)//naranja-> naranja mas intensolespejo
         };
 
         Color color = colors[pieza.ordinal()];//obtenermos el color de la pieza
