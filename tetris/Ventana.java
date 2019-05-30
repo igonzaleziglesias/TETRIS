@@ -112,7 +112,7 @@ public class Ventana extends JPanel implements ActionListener {
     public void paint(Graphics g) { //clase para dar color
         super.paint(g);
         Color col = new Color(255, 255, 255);//color gris
-        g.drawLine(0, 20, 300, 20);//pinta una linea en la parte superior de la ventana
+        g.drawLine(0, 20, 245, 20);//pinta una linea en la parte superior de la ventana
         Dimension size = getSize();//encapsula el tamñao de un objeto
         int parteSuperiorTablero = (int) size.getHeight() - altoTablero * alturaPieza();
 
