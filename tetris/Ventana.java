@@ -210,14 +210,14 @@ public class Ventana extends JPanel implements ActionListener {
             System.out.println(velocidad);
             timer.start();
         }
-        //Demasiado RAPIDO
-        if ((contador == 110) && (velocidad - 50 > 0)) {
-            timer.stop();
-            velocidad = velocidad - 50;
-            timer = new Timer(velocidad, this);
-            System.out.println(velocidad);
-            timer.start();
-        }
+//        //Demasiado RAPIDO
+//        if ((contador == 110) && (velocidad - 50 > 0)) {
+//            timer.stop();
+//            velocidad = velocidad - 50;
+//            timer = new Timer(velocidad, this);
+//            System.out.println(velocidad);
+//            timer.start();
+//        }
 
         piezaActual.setPìezaAleatoria();
         posicionX = anchoTablero / 2;
