@@ -247,13 +247,13 @@ public class Ventana extends JPanel implements ActionListener {
             }
 
             estado.setText("Game over");
-            
-        try {
-            crearMenu();
-        } catch (excepcionSql ex) {
-            ex.getMessage();
-        }
-            
+//            
+//        try {
+//            crearMenu();
+//        } catch (excepcionSql ex) {
+//            ex.getMessage();
+//        }
+//            
         }
     }
 
