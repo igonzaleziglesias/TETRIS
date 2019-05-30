@@ -192,7 +192,7 @@ public class Ventana extends JPanel implements ActionListener {
                 timer.start();
             }
         }
-        if (velocidad > 100) {
+        if (velocidad > 200) {
             if ((contador == 30) && (velocidad - 200 > 0)) {
                 timer.stop();
                 velocidad = velocidad - 200;
@@ -201,7 +201,8 @@ public class Ventana extends JPanel implements ActionListener {
                 timer.start();
             }
         }
-        if ((contador == 40) && (velocidad - 100 > 0)) {
+        //muy rapido
+        if ((contador == 100) && (velocidad - 100 > 0)) {
             timer.stop();
             velocidad = velocidad - 100;
             timer = new Timer(velocidad, this);
@@ -209,13 +210,13 @@ public class Ventana extends JPanel implements ActionListener {
             timer.start();
         }
         //Demasiado RAPIDO
-//        if ((contador == 50) && (velocidad - 50 > 0)) {
-//            timer.stop();
-//            velocidad = velocidad - 50;
-//            timer = new Timer(velocidad, this);
-//            System.out.println(velocidad);
-//            timer.start();
-//        }
+        if ((contador == 110) && (velocidad - 50 > 0)) {
+            timer.stop();
+            velocidad = velocidad - 50;
+            timer = new Timer(velocidad, this);
+            System.out.println(velocidad);
+            timer.start();
+        }
 
         piezaActual.setPìezaAleatoria();
         posicionX = anchoTablero / 2;
