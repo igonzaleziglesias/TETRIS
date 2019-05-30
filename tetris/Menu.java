@@ -8,7 +8,7 @@ import static tetris.App.INDEX;
 
 public class Menu {
 
-    public void crearMenu() {
+    public static void crearMenu() throws excepcionSql {
         int eleccion;
 
         String[] elecciones = {"Jugar", "Salir"};//mensaje final de partida

@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import libreria.Pedir;
 import static tetris.App.INDEX;
+import static tetris.Menu.crearMenu;
 import tetris.Piezas.PiezasTetris;
 
 public class Ventana extends JPanel implements ActionListener {
@@ -246,7 +247,13 @@ public class Ventana extends JPanel implements ActionListener {
             }
 
             estado.setText("Game over");
-
+            
+        try {
+            crearMenu();
+        } catch (excepcionSql ex) {
+            ex.getMessage();
+        }
+            
         }
     }
 

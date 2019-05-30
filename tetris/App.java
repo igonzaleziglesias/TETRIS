@@ -1,6 +1,10 @@
 package tetris;
 
+import excepciones.excepcionSql;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static tetris.Menu.crearMenu;
 
 public class App {
 
@@ -8,8 +12,11 @@ public class App {
 
     public App() {
 
-        Menu menu = new Menu();
-        menu.crearMenu();
+        try {
+            crearMenu();
+        } catch (excepcionSql ex) {
+            ex.getMessage();
+        }
 
     }
 
